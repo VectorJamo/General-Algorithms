@@ -2,12 +2,8 @@
 #include <vector>
 #include <algorithm>
 
-int main()
+void parseInt(const char* string, std::vector<int>* vector)
 {
-	const char* string = "6, 7, 990, 77879, 1";
-
-	std::vector<int> data;
-
 	for (int i = 0; i < strlen(string); i++)
 	{
 		if (int(string[i]) >= 48 && int(string[i]) <= 57)
@@ -18,13 +14,20 @@ int main()
 				num = num * 10 + (string[i] - 48);
 				i++;
 			}
-			data.push_back(num);
+			vector->push_back(num);
 		}
 	}
-	
-	std::sort(data.begin(), data.end());
-	for (std::vector<int>::iterator it = data.begin(); it != data.end(); it++)
-		std::cout << *it << std::endl;
+}
+int main()
+{
+	std::vector<int> data;
+	const char* string = "78 3, 348738, fjashjhf, 1122";
+
+	parseInt(string, &data);
+
+	for (int element : data)
+		std::cout << element << std::endl;
+
 
 	system("pause");
 	return 0;
